@@ -1,3 +1,32 @@
+h1{
+  text-align: center;
+}
+
+@media only screen and (min-width: 600px){
+  .problems {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 1rem;
+  justify-content: center;
+  padding: 1rem;
+}
+}
+
+.problem-box {
+  width: fit-content;
+  padding: 2rem;
+  border: solid black 1px;
+  margin-bottom: 1rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media screen and (min-width: 600px) {
+  .problem-box{
+    margin-bottom: 0;
+  }
+}
+
 .equation {
   padding: 2rem;
   width: fit-content;
@@ -8,7 +37,7 @@
   border-bottom: solid black 2px;
 }
 
-.user-answer{
+.user-answer {
   display: flex;
   flex-direction: column;
   gap: 5px;
