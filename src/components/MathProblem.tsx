@@ -1,13 +1,9 @@
-import { useRef } from "react";
+import AnswerAndCheck from "./AnswerAndCheck";
 
 function MathProblem() {
-  const userAnswer = useRef<HTMLInputElement>(null);
   const numbers: [number, number] = [0, 0];
   let symbol: string = "";
 
-  const handleSubmitAnswer = () => {
-    if (userAnswer.current) console.log(userAnswer.current.value);
-  };
 
   //set initial math operator symbol 
   const SymbolSelect = (): string => {
@@ -87,11 +83,8 @@ function MathProblem() {
           </p>
         </div>
         <div className="user-answer">
-          <input type="text" size={5} ref={userAnswer} />
-          <button onClick={handleSubmitAnswer}>Submit Answer</button>
+         <AnswerAndCheck solution={CreateAnswer()}/>
         </div>
-        
-        <p>{CreateAnswer()}</p>
       </div>
     </>
   );
