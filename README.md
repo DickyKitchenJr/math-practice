@@ -9,7 +9,7 @@
 ## Resources Used:
 
 - Vite
-- React
+- React.js
 - CSS
 - HTML
 - JavaScript
