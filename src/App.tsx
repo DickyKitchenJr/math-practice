@@ -1,21 +1,31 @@
+import { useState } from "react";
 import "./App.css";
-import MathProblem from "./components/MathProblem";
 import Header from "./components/Header";
+import PracticeProblems from "./PracticeProblems";
+import ChooseSettings from "./ChooseSettings";
 
 function App() {
-  //used to set how many problems will be displayed
-  const numberOfProblems = 15;
+  const [currentView, setCurrentView] = useState<"settings" | "practice">(
+    "settings"
+  );
+  const [numberOfProblems, setNumberOfProblems] = useState(0);
+
+  const pageChangeHandler = (view: "settings" | "practice") => {
+    setCurrentView(view);
+  }
+
+  const setNumberOfProblemsHandler = (num: number) => {
+    setNumberOfProblems(num);
+  }
 
   return (
     <>
       <Header />
-      <div className="problems">
-        {Array.from({ length: numberOfProblems }, (_, index) => (
-          <div key={index} className="problem-box">
-            {index + 1}.<MathProblem />
-          </div>
-        ))}
-      </div>
+      {currentView === "settings" ? (
+        <ChooseSettings setPage={pageChangeHandler} setNumberOfProblems={setNumberOfProblemsHandler} />
+      ) : (
+        <PracticeProblems numberOfProblems={numberOfProblems} setPage={pageChangeHandler} />
+      )}
     </>
   );
 }

@@ -1,13 +1,22 @@
 
+interface ChooseSettingsProps {
+  setPage: (view: "settings" | "practice") => void;
+  setNumberOfProblems: (num: number) => void;
+}
 
-function ChooseSettings() {
+function ChooseSettings({ setPage, setNumberOfProblems }: ChooseSettingsProps) {
+
   return (
     <>
-      <header>
-        <h1>Choose Your Settings</h1>
-      </header>
+      <button onClick={() => setPage("practice")}>Start Practice</button>
       <main>
         <form>
+          <label htmlFor="numProblems">Number of Problems: </label>
+          <input
+            type="number"
+            id="numProblems"
+            onChange={(e) => setNumberOfProblems(Number(e.target.value))}
+          />
           {/* TODO:  add options for how many digits each problem can be*/}
           {/* TODO:  add options for which operators can be used*/}
         </form>
