@@ -1,11 +1,16 @@
+import { useContext } from "react";
+import { MathPracticeSettingsContext } from "../MathPracticeContext";
 import AnswerAndCheck from "./AnswerAndCheck";
 
 function MathProblem() {
   const numbers: [number, number] = [0, 0];
   let symbol: string = "";
+  const { lengthOfDigitsInProblems: len } = useContext(
+    MathPracticeSettingsContext
+  )!;
+  const maxNumberLength: number = Math.pow(10, len) - 1;
 
-
-  //set initial math operator symbol 
+  //set initial math operator symbol
   const SymbolSelect = (): string => {
     const symbols: string[] = ["+", "-", "x", "/"];
     const pickSymbol: string = symbols[Math.floor(Math.random() * 4)];
@@ -19,16 +24,13 @@ function MathProblem() {
     let firstNumber: number;
     let secondNumber: number;
 
-    if (symbol === "+" || symbol === "-") {
-      firstNumber = Math.floor(Math.random() * 900001);
-      secondNumber = Math.floor(Math.random() * 900001);
-    } else if (symbol === "x") {
-      firstNumber = Math.floor(Math.random() * 13);
-      secondNumber = Math.floor(Math.random() * 13);
+    if (symbol === "+" || symbol === "-" || symbol === "x") {
+      firstNumber = Math.floor(Math.random() * (maxNumberLength + 1));
+      secondNumber = Math.floor(Math.random() * (maxNumberLength + 1));
     } else {
-      firstNumber = Math.floor(Math.random() * 13);
-      //to keep division answers to whole numbers
-      secondNumber = firstNumber * Math.floor(Math.random() * 13);
+      //to prevent division by zero
+      firstNumber = Math.floor(Math.random() * (maxNumberLength + 1)) + 1;
+      secondNumber = Math.floor(Math.random() * (maxNumberLength + 1)) + 1;
     }
     numbers[0] = firstNumber;
     numbers[1] = secondNumber;
@@ -45,12 +47,6 @@ function MathProblem() {
       numbers[0] = holderTwo;
       numbers[1] = holderOne;
     }
-    //to not allow for division by zero
-    if (symbol === "/" && (numbers[0] === 0 || numbers[1] === 0)) {
-      numbers[0] = numbers[0] + 2;
-      numbers[1] = numbers[1] + 2;
-    }
-
     return numbers;
   };
 
@@ -83,7 +79,7 @@ function MathProblem() {
           </p>
         </div>
         <div className="user-answer">
-         <AnswerAndCheck solution={CreateAnswer()}/>
+          <AnswerAndCheck solution={CreateAnswer()} />
         </div>
       </div>
     </>

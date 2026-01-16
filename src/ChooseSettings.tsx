@@ -1,10 +1,12 @@
+import { useContext } from "react";
+import { MathPracticeSettingsContext } from "./MathPracticeContext";
 
 interface ChooseSettingsProps {
   setPage: (view: "settings" | "practice") => void;
-  setNumberOfProblems: (num: number) => void;
 }
 
-function ChooseSettings({ setPage, setNumberOfProblems }: ChooseSettingsProps) {
+function ChooseSettings({ setPage}: ChooseSettingsProps) {
+  const {setNumberOfProblemsHandler, setLengthOfDigitsInProblemsHandler} = useContext(MathPracticeSettingsContext)!;
 
   return (
     <>
@@ -15,9 +17,20 @@ function ChooseSettings({ setPage, setNumberOfProblems }: ChooseSettingsProps) {
           <input
             type="number"
             id="numProblems"
-            onChange={(e) => setNumberOfProblems(Number(e.target.value))}
+            onChange={(e) => setNumberOfProblemsHandler(Number(e.target.value))}
           />
           {/* TODO:  add options for how many digits each problem can be*/}
+          <label htmlFor="lengthOfDigits">Length of Digits in Problems: </label>
+          <select
+            id="lengthOfDigits"
+            onChange={(e) => setLengthOfDigitsInProblemsHandler(Number(e.target.value))}
+          >
+            <option value={1}>0-9</option>
+            <option value={2}>0-99</option>
+            <option value={3}>0-999</option>
+            <option value={4}>0-9999</option>
+            <option value={5}>0-99999</option>
+          </select>
           {/* TODO:  add options for which operators can be used*/}
         </form>
       </main>

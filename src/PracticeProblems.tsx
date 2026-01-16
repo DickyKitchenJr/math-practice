@@ -1,14 +1,16 @@
+import { useContext } from "react";
 import MathProblem from "./components/MathProblem";
+import { MathPracticeSettingsContext } from "./MathPracticeContext";
 
 interface PracticeProblemsProps {
-  numberOfProblems: number;
   setPage: (view: "settings" | "practice") => void;
 }
 
 function PracticeProblems({
-  numberOfProblems,
   setPage,
 }: PracticeProblemsProps) {
+  const {numberOfProblems} = useContext(MathPracticeSettingsContext)!;
+
   return (
     <>
       <button onClick={() => setPage("settings")}>Back to Settings</button>

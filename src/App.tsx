@@ -8,23 +8,18 @@ function App() {
   const [currentView, setCurrentView] = useState<"settings" | "practice">(
     "settings"
   );
-  const [numberOfProblems, setNumberOfProblems] = useState(0);
 
   const pageChangeHandler = (view: "settings" | "practice") => {
     setCurrentView(view);
-  }
-
-  const setNumberOfProblemsHandler = (num: number) => {
-    setNumberOfProblems(num);
-  }
+  };
 
   return (
     <>
       <Header />
       {currentView === "settings" ? (
-        <ChooseSettings setPage={pageChangeHandler} setNumberOfProblems={setNumberOfProblemsHandler} />
+        <ChooseSettings setPage={pageChangeHandler} />
       ) : (
-        <PracticeProblems numberOfProblems={numberOfProblems} setPage={pageChangeHandler} />
+        <PracticeProblems setPage={pageChangeHandler} />
       )}
     </>
   );
