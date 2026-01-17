@@ -5,8 +5,12 @@ interface ChooseSettingsProps {
   setPage: (view: "settings" | "practice") => void;
 }
 
-function ChooseSettings({ setPage}: ChooseSettingsProps) {
-  const {setNumberOfProblemsHandler, setLengthOfDigitsInProblemsHandler} = useContext(MathPracticeSettingsContext)!;
+function ChooseSettings({ setPage }: ChooseSettingsProps) {
+  const {
+    setNumberOfProblemsHandler,
+    setLengthOfDigitsInProblemsHandler,
+    setMathOperatorOptionsHandler,
+  } = useContext(MathPracticeSettingsContext)!;
 
   return (
     <>
@@ -19,11 +23,13 @@ function ChooseSettings({ setPage}: ChooseSettingsProps) {
             id="numProblems"
             onChange={(e) => setNumberOfProblemsHandler(Number(e.target.value))}
           />
-          {/* TODO:  add options for how many digits each problem can be*/}
+          {/*option for how many digits each problem can be*/}
           <label htmlFor="lengthOfDigits">Length of Digits in Problems: </label>
           <select
             id="lengthOfDigits"
-            onChange={(e) => setLengthOfDigitsInProblemsHandler(Number(e.target.value))}
+            onChange={(e) =>
+              setLengthOfDigitsInProblemsHandler(Number(e.target.value))
+            }
           >
             <option value={1}>0-9</option>
             <option value={2}>0-99</option>
@@ -31,7 +37,44 @@ function ChooseSettings({ setPage}: ChooseSettingsProps) {
             <option value={4}>0-9999</option>
             <option value={5}>0-99999</option>
           </select>
-          {/* TODO:  add options for which operators can be used*/}
+          {/*options for which operators can be used*/}
+          <h2>Math Operators to Include: </h2>
+          <input
+            type="checkbox"
+            name="addition"
+            value={"+"}
+            onChange={(e) =>
+              setMathOperatorOptionsHandler(String(e.target.value))
+            }
+          />
+          <label htmlFor="addition">+</label>
+          <input
+            type="checkbox"
+            name="subtraction"
+            value={"-"}
+            onChange={(e) =>
+              setMathOperatorOptionsHandler(String(e.target.value))
+            }
+          />
+          <label htmlFor="subtraction">-</label>
+          <input
+            type="checkbox"
+            name="multiplication"
+            value={"x"}
+            onChange={(e) =>
+              setMathOperatorOptionsHandler(String(e.target.value))
+            }
+          />
+          <label htmlFor="multiplication">x</label>
+          <input
+            type="checkbox"
+            name="division"
+            value={"/"}
+            onChange={(e) =>
+              setMathOperatorOptionsHandler(String(e.target.value))
+            }
+          />
+          <label htmlFor="division">/</label>
         </form>
       </main>
       <footer>
@@ -44,4 +87,4 @@ function ChooseSettings({ setPage}: ChooseSettingsProps) {
   );
 }
 
-export default ChooseSettings
+export default ChooseSettings;

@@ -5,16 +5,17 @@ import AnswerAndCheck from "./AnswerAndCheck";
 function MathProblem() {
   const numbers: [number, number] = [0, 0];
   let symbol: string = "";
-  const { lengthOfDigitsInProblems: len } = useContext(
+  const { lengthOfDigitsInProblems: len, mathOperatorOptions } = useContext(
     MathPracticeSettingsContext
   )!;
   const maxNumberLength: number = Math.pow(10, len) - 1;
 
   //set initial math operator symbol
   const SymbolSelect = (): string => {
-    const symbols: string[] = ["+", "-", "x", "/"];
-    const pickSymbol: string = symbols[Math.floor(Math.random() * 4)];
-    symbol = pickSymbol;
+    symbol =
+      mathOperatorOptions[
+        Math.floor(Math.random() * mathOperatorOptions.length)
+      ];
     return symbol;
   };
 
