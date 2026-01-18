@@ -9,6 +9,10 @@ export const MathPracticeSettingsContext = createContext<
       setLengthOfDigitsInProblemsHandler: (length: number) => void;
       setMathOperatorOptionsHandler: (operator: string) => void;
       resetSettingsHandler: () => void;
+      onlyAllowWholeNumbers: boolean;
+      setOnlyAllowWholeNumbersHandler: (allowWholeNumbers: boolean) => void;
+      allowNegativeAnswers: boolean;
+      setAllowNegativeAnswersHandler: (allowNegatives: boolean) => void;
     }
   | undefined
 >(undefined);
@@ -21,6 +25,8 @@ export const MathPracticeSettingsProvider = ({
   const [numberOfProblems, setNumberOfProblems] = useState(0);
   const [lengthOfDigitsInProblems, setLengthOfDigitsInProblems] = useState(1);
   const [mathOperatorOptions, setMathOperatorOptions] = useState<string[]>([]);
+  const [onlyAllowWholeNumbers, setOnlyAllowWholeNumbers] = useState(true);
+  const [allowNegativeAnswers, setAllowNegativeAnswers] = useState(false);
 
   const setNumberOfProblemsHandler = (num: number) => {
     setNumberOfProblems(num);
@@ -38,10 +44,20 @@ export const MathPracticeSettingsProvider = ({
     );
   };
 
+  const setOnlyAllowWholeNumbersHandler = (allowWholeNumbers: boolean) => {
+    setOnlyAllowWholeNumbers(allowWholeNumbers);
+  };
+
+  const setAllowNegativeAnswersHandler = (allowNegatives: boolean) => {
+    setAllowNegativeAnswers(allowNegatives);
+  };
+
   const resetSettingsHandler = () => {
     setNumberOfProblems(0);
     setLengthOfDigitsInProblems(1);
     setMathOperatorOptions([]);
+    setOnlyAllowWholeNumbers(true);
+    setAllowNegativeAnswers(false);
   };
 
   return (
@@ -54,6 +70,10 @@ export const MathPracticeSettingsProvider = ({
         setLengthOfDigitsInProblemsHandler,
         setMathOperatorOptionsHandler,
         resetSettingsHandler,
+        onlyAllowWholeNumbers,
+        setOnlyAllowWholeNumbersHandler,
+        allowNegativeAnswers,
+        setAllowNegativeAnswersHandler,
       }}
     >
       {children}

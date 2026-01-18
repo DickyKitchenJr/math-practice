@@ -5,9 +5,12 @@ import AnswerAndCheck from "./AnswerAndCheck";
 function MathProblem() {
   const numbers: [number, number] = [0, 0];
   let symbol: string = "";
-  const { lengthOfDigitsInProblems: len, mathOperatorOptions } = useContext(
-    MathPracticeSettingsContext
-  )!;
+  const {
+    lengthOfDigitsInProblems: len,
+    mathOperatorOptions,
+    onlyAllowWholeNumbers,
+    allowNegativeAnswers,
+  } = useContext(MathPracticeSettingsContext)!;
   const maxNumberLength: number = Math.pow(10, len) - 1;
 
   //set initial math operator symbol
@@ -38,16 +41,57 @@ function MathProblem() {
     return numbers;
   };
 
-  //adjust numbers if needed to account for keeping equations on a 3rd/4th grade level
   const AdjustNumbers = (): [number, number] => {
     AssignNumbers();
-    //to not allow for negative results for subtraction and improper fractions for division to math problems switch numbers if first in array is less than second
-    if ((symbol === "-" || symbol === "/") && numbers[0] < numbers[1]) {
+    //to not allow improper fractions with division, switch numbers if first in array is less than second
+    if (symbol === "/" && numbers[0] < numbers[1]) {
       const holderOne: number = numbers[0];
       const holderTwo: number = numbers[1];
       numbers[0] = holderTwo;
       numbers[1] = holderOne;
     }
+
+    //PURPOSE: leaving more comments here so I actually remember what the heck I was doing since this one took a bit more thought due to edge cases
+
+    // to only allow whole number answers for division problems, generate the problem backward to guarantee whole number results while respecting maxNumberLength
+    // backward generation: pick divisor first, then multiplier, then calculate dividend = divisor * multiplier
+    // this ensures: 1) whole number answer by construction, 2) no recursion needed, 3) both numbers within constraints, 4) problem variety
+    if (
+      onlyAllowWholeNumbers &&
+      symbol === "/"
+    ) {
+      // determine the cap for the divisor to ensure multiple multiplier options per divisor
+      // if len = 1 (only single digits), cap at maxNumberLength / 2 to avoid repetitive same-number-divided-by-itself problems
+      // if len >= 2, cap at maxNumberLength / 4 to ensure at least 4 different multipliers are possible
+      const divisorCap = len === 1 ? Math.floor(maxNumberLength / 2) : Math.floor(maxNumberLength / 4);
+      
+      // generate a random divisor between 1 and divisorCap (inclusive)
+      const divisor = Math.floor(Math.random() * divisorCap) + 1;
+      
+      // calculate the maximum multiplier: the largest number we can multiply divisor by without exceeding maxNumberLength
+      const maxMultiplier = Math.floor(maxNumberLength / divisor);
+      
+      // generate a random multiplier between 1 and maxMultiplier (inclusive)
+      const multiplier = Math.floor(Math.random() * maxMultiplier) + 1;
+      
+      // set the dividend (numbers[0]) and divisor (numbers[1])
+      // dividend = divisor * multiplier guarantees the result will be a whole number: (divisor * multiplier) / divisor = multiplier
+      numbers[0] = divisor * multiplier;
+      numbers[1] = divisor;
+    }
+
+    //to not allow negative answers in subtraction problems, switch numbers if first in array is less than second
+    if (
+      allowNegativeAnswers === false &&
+      symbol === "-" &&
+      numbers[0] < numbers[1]
+    ) {
+      const holderOne: number = numbers[0];
+      const holderTwo: number = numbers[1];
+      numbers[0] = holderTwo;
+      numbers[1] = holderOne;
+    }
+
     return numbers;
   };
 

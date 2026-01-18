@@ -23,6 +23,7 @@ function PracticeProblems({ setPage }: PracticeProblemsProps) {
       <main>
         <h2>Practice Problems</h2>
         <p>Write out your work on a sheet of paper.</p>
+        {/* TODO: figure out a way to make sure problems don't repeat */}
         <div className="problems">
           {Array.from({ length: numberOfProblems }, (_, index) => (
             <div key={index} className="problem-box">

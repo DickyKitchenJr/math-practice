@@ -11,37 +11,45 @@ function ChooseSettings({ setPage }: ChooseSettingsProps) {
     numberOfProblems,
     lengthOfDigitsInProblems,
     mathOperatorOptions,
+    onlyAllowWholeNumbers,
+    allowNegativeAnswers,
     setNumberOfProblemsHandler,
     setLengthOfDigitsInProblemsHandler,
     setMathOperatorOptionsHandler,
+    setAllowNegativeAnswersHandler,
+    setOnlyAllowWholeNumbersHandler,
   } = useContext(MathPracticeSettingsContext)!;
 
   const isFormComplete =
     numberOfProblems > 0 &&
     lengthOfDigitsInProblems > 0 &&
-    mathOperatorOptions.length > 0;
-
+    mathOperatorOptions.length > 0 &&
+    onlyAllowWholeNumbers !== undefined &&
+    allowNegativeAnswers !== undefined;
   return (
     <>
       <main>
         <h2>Use the following settings to customize your practice session</h2>
         <form className="settings-form">
           <fieldset>
-            <label htmlFor="numProblems">Number of Problems: </label>
+            <label htmlFor="numberOfProblems" className="settings-form-label">Number of Problems: </label>
             <input
               type="number"
-              id="numProblems"
+              id="numberOfProblems"
+              name="numberOfProblems"
               onChange={(e) =>
                 setNumberOfProblemsHandler(Number(e.target.value))
               }
             />
           </fieldset>
+
           <fieldset>
-            <label htmlFor="lengthOfDigits">
+            <label htmlFor="lengthOfDigits" className="settings-form-label">
               Length of Digits in Problems:{" "}
             </label>
             <select
               id="lengthOfDigits"
+              name="lengthOfDigits"
               onChange={(e) =>
                 setLengthOfDigitsInProblemsHandler(Number(e.target.value))
               }
@@ -55,11 +63,46 @@ function ChooseSettings({ setPage }: ChooseSettingsProps) {
           </fieldset>
 
           <fieldset>
-            <legend>Math Operators to Include: </legend>
+            <label htmlFor="allowNegativeAnswers" className="settings-form-label">
+              Allow for Negative Answers:{" "}
+            </label>
+            <select
+              id="allowNegativeAnswers"
+              name="allowNegativeAnswers"
+              onChange={(e) =>
+                setAllowNegativeAnswersHandler(e.target.value === "true")
+              }
+            >
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
+          </fieldset>
+
+          <fieldset>
+            <label htmlFor="onlyAllowWholeNumbers" className="settings-form-label">
+              Only Allow Whole Number Answers:{" "}
+            </label>
+            <select
+              id="onlyAllowWholeNumbers"
+              name="onlyAllowWholeNumbers"
+              onChange={(e) =>
+                setOnlyAllowWholeNumbersHandler(e.target.value === "true")
+              }
+            >
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
+          </fieldset>
+
+          <fieldset>
+            <legend className="settings-form-label">
+              Math Operators to Include:{" "}
+            </legend>
             <div>
               <input
                 type="checkbox"
                 name="addition"
+                id="addition"
                 value={"+"}
                 onChange={(e) =>
                   setMathOperatorOptionsHandler(String(e.target.value))
@@ -71,6 +114,7 @@ function ChooseSettings({ setPage }: ChooseSettingsProps) {
               <input
                 type="checkbox"
                 name="subtraction"
+                id="subtraction"
                 value={"-"}
                 onChange={(e) =>
                   setMathOperatorOptionsHandler(String(e.target.value))
@@ -82,6 +126,7 @@ function ChooseSettings({ setPage }: ChooseSettingsProps) {
               <input
                 type="checkbox"
                 name="multiplication"
+                id="multiplication"
                 value={"x"}
                 onChange={(e) =>
                   setMathOperatorOptionsHandler(String(e.target.value))
@@ -93,6 +138,7 @@ function ChooseSettings({ setPage }: ChooseSettingsProps) {
               <input
                 type="checkbox"
                 name="division"
+                id="division"
                 value={"/"}
                 onChange={(e) =>
                   setMathOperatorOptionsHandler(String(e.target.value))
