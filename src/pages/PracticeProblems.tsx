@@ -1,19 +1,25 @@
 import { useContext } from "react";
-import MathProblem from "./components/MathProblem";
-import { MathPracticeSettingsContext } from "./MathPracticeContext";
+import MathProblem from "../components/MathProblem";
+import { MathPracticeSettingsContext } from "../MathPracticeContext";
+import "./PracticeProblems.css";
 
 interface PracticeProblemsProps {
   setPage: (view: "settings" | "practice") => void;
 }
 
-function PracticeProblems({
-  setPage,
-}: PracticeProblemsProps) {
-  const {numberOfProblems} = useContext(MathPracticeSettingsContext)!;
+function PracticeProblems({ setPage }: PracticeProblemsProps) {
+  const { numberOfProblems, resetSettingsHandler } = useContext(
+    MathPracticeSettingsContext,
+  )!;
+
+  const backToSettingsHandler = () => {
+    resetSettingsHandler();
+    setPage("settings");
+  };
 
   return (
     <>
-      <button onClick={() => setPage("settings")}>Back to Settings</button>
+      <button onClick={() => backToSettingsHandler()}>Back to Settings</button>
       <main>
         <h2>Practice Problems</h2>
         <p>Write out your work on a sheet of paper.</p>

@@ -8,6 +8,7 @@ export const MathPracticeSettingsContext = createContext<
       setNumberOfProblemsHandler: (num: number) => void;
       setLengthOfDigitsInProblemsHandler: (length: number) => void;
       setMathOperatorOptionsHandler: (operator: string) => void;
+      resetSettingsHandler: () => void;
     }
   | undefined
 >(undefined);
@@ -33,8 +34,14 @@ export const MathPracticeSettingsProvider = ({
     setMathOperatorOptions((prevOperators) =>
       prevOperators.includes(operator)
         ? prevOperators.filter((eachOp) => eachOp !== operator)
-        : [...prevOperators, operator]
+        : [...prevOperators, operator],
     );
+  };
+
+  const resetSettingsHandler = () => {
+    setNumberOfProblems(0);
+    setLengthOfDigitsInProblems(1);
+    setMathOperatorOptions([]);
   };
 
   return (
@@ -46,6 +53,7 @@ export const MathPracticeSettingsProvider = ({
         setNumberOfProblemsHandler,
         setLengthOfDigitsInProblemsHandler,
         setMathOperatorOptionsHandler,
+        resetSettingsHandler,
       }}
     >
       {children}

@@ -1,12 +1,11 @@
 import { useState } from "react";
-import "./App.css";
 import Header from "./components/Header";
-import PracticeProblems from "./PracticeProblems";
-import ChooseSettings from "./ChooseSettings";
+import PracticeProblems from "./pages/PracticeProblems";
+import ChooseSettings from "./pages/ChooseSettings";
 
 function App() {
   const [currentView, setCurrentView] = useState<"settings" | "practice">(
-    "settings"
+    "settings",
   );
 
   const pageChangeHandler = (view: "settings" | "practice") => {
