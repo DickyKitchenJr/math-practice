@@ -32,7 +32,9 @@ function ChooseSettings({ setPage }: ChooseSettingsProps) {
         <h2>Use the following settings to customize your practice session</h2>
         <form className="settings-form">
           <fieldset>
-            <label htmlFor="numberOfProblems" className="settings-form-label">Number of Problems: </label>
+            <label htmlFor="numberOfProblems" className="settings-form-label">
+              Number of Problems:{" "}
+            </label>
             <input
               type="number"
               id="numberOfProblems"
@@ -63,7 +65,10 @@ function ChooseSettings({ setPage }: ChooseSettingsProps) {
           </fieldset>
 
           <fieldset>
-            <label htmlFor="allowNegativeAnswers" className="settings-form-label">
+            <label
+              htmlFor="allowNegativeAnswers"
+              className="settings-form-label"
+            >
               Allow for Negative Answers:{" "}
             </label>
             <select
@@ -79,7 +84,10 @@ function ChooseSettings({ setPage }: ChooseSettingsProps) {
           </fieldset>
 
           <fieldset>
-            <label htmlFor="onlyAllowWholeNumbers" className="settings-form-label">
+            <label
+              htmlFor="onlyAllowWholeNumbers"
+              className="settings-form-label"
+            >
               Only Allow Whole Number Answers:{" "}
             </label>
             <select
@@ -98,7 +106,7 @@ function ChooseSettings({ setPage }: ChooseSettingsProps) {
             <legend className="settings-form-label">
               Math Operators to Include:{" "}
             </legend>
-            <div>
+            <div className="checkbox-div">
               <input
                 type="checkbox"
                 name="addition"
@@ -110,7 +118,7 @@ function ChooseSettings({ setPage }: ChooseSettingsProps) {
               />
               <label htmlFor="addition">addition</label>
             </div>
-            <div>
+            <div className="checkbox-div">
               <input
                 type="checkbox"
                 name="subtraction"
@@ -122,7 +130,7 @@ function ChooseSettings({ setPage }: ChooseSettingsProps) {
               />
               <label htmlFor="subtraction">subtraction</label>
             </div>
-            <div>
+            <div className="checkbox-div">
               <input
                 type="checkbox"
                 name="multiplication"
@@ -134,7 +142,7 @@ function ChooseSettings({ setPage }: ChooseSettingsProps) {
               />
               <label htmlFor="multiplication">multiplication</label>
             </div>
-            <div>
+            <div className="checkbox-div">
               <input
                 type="checkbox"
                 name="division"
@@ -154,6 +162,35 @@ function ChooseSettings({ setPage }: ChooseSettingsProps) {
             Start Practice
           </button>
         </form>
+        <h2>Considerations:</h2>
+        <ul>
+          <li>
+            this program is intended for quick practice sessions rather than
+            long, exhaustive drills
+          </li>
+          <li>
+            by combining a high number of problems with restricted options, you
+            are more likely to see repeated problems vs unique problems
+          </li>
+          <li>
+            if you find that your problems are repeating too often, consider
+            increasing the length of digits or the variety of math operators
+          </li>
+          <li>
+            if you find the problems too difficult at first, consider working
+            with less digits in the problems and building up to more as you get
+            comfortable
+          </li>
+          <li>
+            while we are hoping to expand the program at some point to show your
+            work within the program, currently it is advised to work out
+            problems on a sheet of paper
+          </li>
+          <li>
+            while we may expand it's target range in the future, currently it is
+            intended for elementary and kindergarten school level math practice
+          </li>
+        </ul>
       </main>
       <footer>
         <p className="instructions">

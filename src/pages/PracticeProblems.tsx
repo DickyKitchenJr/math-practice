@@ -19,10 +19,12 @@ function PracticeProblems({ setPage }: PracticeProblemsProps) {
 
   return (
     <>
-      <button onClick={() => backToSettingsHandler()}>Back to Settings</button>
       <main>
+        <button className="back-button" onClick={() => backToSettingsHandler()}>
+          Back to Settings
+        </button>
         <h2>Practice Problems</h2>
-        <p>Write out your work on a sheet of paper.</p>
+        <p className="subheader">Write out your work on a sheet of paper.</p>
         {/* TODO: figure out a way to make sure problems don't repeat */}
         <div className="problems">
           {Array.from({ length: numberOfProblems }, (_, index) => (

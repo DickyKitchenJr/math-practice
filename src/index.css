@@ -1,7 +1,13 @@
-*{
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+#root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 body {
@@ -22,12 +28,26 @@ h1 {
 }
 
 main {
+  flex: 1;
+  overflow-y: auto;
   display: flex;
+  gap: 1rem;
   flex-direction: column;
   align-items: center;
   padding: 1rem;
 }
 
-fieldset{
+fieldset {
   border: none;
+}
+
+button {
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.85rem;
+}
+
+footer {
+  text-align: center;
+  background-color: darkseagreen;
 }
