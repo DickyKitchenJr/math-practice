@@ -1,10 +1,10 @@
-# Math Practice (3rd/4th Grade Level)
+# Math Practice
 
-#### Live site: [https://mathproblems.dickykitchen.com/]
+#### Live site: [https://my-math-practice.com/]
 
 ## Purpose:
 
-- to create a program to help my son practice math on a 3rd/4th grade level over the summer so his skills don't get rusty
+- to create a program to help teachers and parents of kindergarten/elementary age kids that will provide a straightforward UI experience with setting up custom practice sessions across various math needs, and then provide feedback to the kids who complete the math practice session
 
 ## Resources Used:
 
@@ -14,11 +14,8 @@
 - HTML
 - JavaScript
 - TypeScript
-- feedback from my son's 3rd grade teacher to determine criteria for 3rd/4th grade math problems
-- feedback from my son for how math problems are typically structured
 
 ## Achievements:
 
-- created a set of 15 random math problems that change on every page load and meet requirements for 3rd/4th grade competencies
+- created a way for users to customize their experience by creating random math problems that fit the criteria of their choosing
 - on submitting the answer, the user is provided with confirmation if the answer is correct or not and given the answer if it is incorrect
-- set up a set of functions that prevent the creation of math problems that would result in negative answer, improper fractions, or division by zero
