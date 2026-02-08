@@ -25,6 +25,20 @@ function PracticeProblems({ setPage }: PracticeProblemsProps) {
         </button>
         <h2>Practice Problems</h2>
         <p className="subheader">Write out your work on a sheet of paper.</p>
+        {/* TODO: remove and/or replace when a better message is created or a better solution for keeping people from cheating by just entering in wrong answer and copying the correct answer is found*/}
+        <p
+          className="subheader"
+          style={{
+            marginTop: "-1rem",
+            textAlign: "center",
+            paddingLeft: "1rem",
+            paddingRight: "1rem",
+          }}
+        >
+          If you submit a wrong answer, the message "Wrong" message will display
+          with the correct answer, and will remain even if you correct the
+          answer and re-submit the answer.
+        </p>
         {/* TODO: figure out a way to make sure problems don't repeat */}
         <div className="problems">
           {Array.from({ length: numberOfProblems }, (_, index) => (
