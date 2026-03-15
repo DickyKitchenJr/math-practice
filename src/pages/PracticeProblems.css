@@ -1,4 +1,8 @@
-.back-button {
+.buttons-div {
+  width: 100%;
+}
+
+.back-and-print-button {
   align-self: flex-start;
   width: fit-content;
   padding: 0.5rem 1rem;
@@ -14,14 +18,9 @@
   font-weight: bold;
 }
 
-.back-button:hover {
+.back-and-print-button:hover {
   background-color: #8fbc8f;
   color: white;
-}
-
-.instructions {
-  text-align: center;
-  font-weight: bold;
 }
 
 .subheader {

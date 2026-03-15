@@ -13,11 +13,13 @@ function ChooseSettings({ setPage }: ChooseSettingsProps) {
     mathOperatorOptions,
     onlyAllowWholeNumbers,
     allowNegativeAnswers,
+    includePrintOption,
     setNumberOfProblemsHandler,
     setLengthOfDigitsInProblemsHandler,
     setMathOperatorOptionsHandler,
     setAllowNegativeAnswersHandler,
     setOnlyAllowWholeNumbersHandler,
+    setIncludePrintOptionHandler,
   } = useContext(MathPracticeSettingsContext)!;
 
   const isFormComplete =
@@ -154,6 +156,22 @@ function ChooseSettings({ setPage }: ChooseSettingsProps) {
               />
               <label htmlFor="division">division</label>
             </div>
+          </fieldset>
+          <fieldset>
+            <label htmlFor="includePrintOption" className="settings-form-label">
+              Include Print Option:{" "}
+            </label>
+            <select
+              id="includePrintOption"
+              name="includePrintOption"
+              defaultValue={String(includePrintOption)}
+              onChange={(e) =>
+                setIncludePrintOptionHandler(e.target.value === "true")
+              }
+            >
+              <option value="true">Yes</option>
+              <option value="false">No</option>
+            </select>
           </fieldset>
           <button
             disabled={!isFormComplete}

@@ -14,6 +14,8 @@ function Header() {
         width={50}
         height={50}
       />
+      <p className="print-name-marker">Name:</p>
+      <p className="print-credit">Created using my-math-practice.com</p>
     </header>
   );
 }

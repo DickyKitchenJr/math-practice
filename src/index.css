@@ -27,9 +27,13 @@ h1 {
   text-align: center;
 }
 
+.print-name-marker {
+  display: none;
+}
+
 main {
   flex: 1;
-  overflow-y: auto;
+  /* overflow-y: auto; */
   display: flex;
   gap: 1rem;
   flex-direction: column;

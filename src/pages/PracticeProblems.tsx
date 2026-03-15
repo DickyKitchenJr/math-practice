@@ -8,42 +8,45 @@ interface PracticeProblemsProps {
 }
 
 function PracticeProblems({ setPage }: PracticeProblemsProps) {
-  const { numberOfProblems, resetSettingsHandler } = useContext(
-    MathPracticeSettingsContext,
-  )!;
+  const { numberOfProblems, resetSettingsHandler, includePrintOption } =
+    useContext(MathPracticeSettingsContext)!;
 
   const backToSettingsHandler = () => {
     resetSettingsHandler();
     setPage("settings");
   };
 
+  const printProblemsHandler = () => {
+    window.print();
+  };
+
   return (
     <>
       <main>
-        <button className="back-button" onClick={() => backToSettingsHandler()}>
-          Back to Settings
-        </button>
+        <div className="buttons-div">
+          <button
+            className="back-and-print-button"
+            onClick={() => backToSettingsHandler()}
+          >
+            Back to Settings
+          </button>
+          {includePrintOption ? (
+            <button
+              className="back-and-print-button"
+              onClick={() => printProblemsHandler()}
+            >
+              Print Problems
+            </button>
+          ) : null}
+        </div>
         <h2>Practice Problems</h2>
         <p className="subheader">Write out your work on a sheet of paper.</p>
-        {/* TODO: remove and/or replace when a better message is created or a better solution for keeping people from cheating by just entering in wrong answer and copying the correct answer is found*/}
-        <p
-          className="subheader"
-          style={{
-            marginTop: "-1rem",
-            textAlign: "center",
-            paddingLeft: "1rem",
-            paddingRight: "1rem",
-          }}
-        >
-          If you submit a wrong answer, the message "Wrong" message will display
-          with the correct answer, and will remain even if you correct the
-          answer and re-submit the answer.
-        </p>
         {/* TODO: figure out a way to make sure problems don't repeat */}
         <div className="problems">
           {Array.from({ length: numberOfProblems }, (_, index) => (
             <div key={index} className="problem-box">
-              {index + 1}.<MathProblem />
+              <p className="problem-number">{index + 1}.</p>
+              <MathProblem />
             </div>
           ))}
         </div>

@@ -1,0 +1,100 @@
+@media print {
+  @page {
+    size: auto;
+    margin: 0.5in;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  #root {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  body {
+    background-color: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.4rem;
+    color: #000;
+  }
+
+  header {
+    display: flex;
+    align-items: start;
+    padding: 1rem;
+    background-color: none;
+  }
+
+  header img {
+    display: none;
+  }
+
+  h1 {
+    display: none;
+  }
+
+  .print-name-marker {
+    display: block;
+  }
+
+  .print-credit {
+    font-size: 0.85rem;
+  }
+
+  main {
+    overflow-y: unset;
+    display: block;
+    padding: 1rem;
+  }
+
+  .buttons-div {
+    display: none;
+  }
+
+  h2 {
+    display: none;
+  }
+
+  .subheader {
+    display: none;
+  }
+
+  .problems {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: unset;
+    align-content: space-between;
+    padding: 1rem;
+    column-gap: 0;
+    row-gap: 4rem;
+  }
+
+  .problem-box {
+    width: 100%;
+    padding: 2rem;
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+    margin-right: auto;
+    margin-left: auto;
+    page-break-inside: avoid;
+  }
+
+  /*adjusting to only allow 9 problems per page*/
+  .problem-box:nth-child(9n) {
+    page-break-after: always;
+  }
+
+  .problem-number {
+    margin-left: -1rem;
+  }
+
+  .user-answer {
+    display: none;
+  }
+}

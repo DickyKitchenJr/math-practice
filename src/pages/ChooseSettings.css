@@ -31,3 +31,8 @@ li {
 footer {
   padding: 2rem;
 }
+
+.instructions {
+  text-align: center;
+  font-weight: bold;
+}

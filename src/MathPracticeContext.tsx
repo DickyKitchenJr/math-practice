@@ -13,6 +13,8 @@ export const MathPracticeSettingsContext = createContext<
       setOnlyAllowWholeNumbersHandler: (allowWholeNumbers: boolean) => void;
       allowNegativeAnswers: boolean;
       setAllowNegativeAnswersHandler: (allowNegatives: boolean) => void;
+      includePrintOption: boolean;
+      setIncludePrintOptionHandler: (includePrint: boolean) => void;
     }
   | undefined
 >(undefined);
@@ -27,6 +29,7 @@ export const MathPracticeSettingsProvider = ({
   const [mathOperatorOptions, setMathOperatorOptions] = useState<string[]>([]);
   const [onlyAllowWholeNumbers, setOnlyAllowWholeNumbers] = useState(true);
   const [allowNegativeAnswers, setAllowNegativeAnswers] = useState(false);
+  const [includePrintOption, setIncludePrintOption] = useState(false);
 
   const setNumberOfProblemsHandler = (num: number) => {
     setNumberOfProblems(num);
@@ -60,6 +63,10 @@ export const MathPracticeSettingsProvider = ({
     setAllowNegativeAnswers(false);
   };
 
+  const setIncludePrintOptionHandler = (includePrint: boolean) => {
+    setIncludePrintOption(includePrint);
+  };
+
   return (
     <MathPracticeSettingsContext.Provider
       value={{
@@ -70,6 +77,8 @@ export const MathPracticeSettingsProvider = ({
         setLengthOfDigitsInProblemsHandler,
         setMathOperatorOptionsHandler,
         resetSettingsHandler,
+        includePrintOption,
+        setIncludePrintOptionHandler,
         onlyAllowWholeNumbers,
         setOnlyAllowWholeNumbersHandler,
         allowNegativeAnswers,
