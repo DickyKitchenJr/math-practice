@@ -8,6 +8,7 @@ const AnswerAndCheck: React.FC<AnswerAndCheckProps> = ({ solution }) => {
   const [userAnswer, setUserAnswer] = useState("");
   const [isAnswerCorrect, setIsAnswerCorrect] = useState(false);
   const [isAnswerWrong, setIsAnswerWrong] = useState(false);
+  const [answerSubmitted, setAnswerSubmitted] = useState(false);
 
   //sets user's answer
   const handleUserInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -17,6 +18,7 @@ const AnswerAndCheck: React.FC<AnswerAndCheckProps> = ({ solution }) => {
 
   //checks if answer is correct or not after user clicks submit
   const handleSubmitAnswer = () => {
+    setAnswerSubmitted(true);
     if (Number(userAnswer) === solution) {
       setIsAnswerCorrect(true);
     } else {
@@ -26,8 +28,15 @@ const AnswerAndCheck: React.FC<AnswerAndCheckProps> = ({ solution }) => {
 
   return (
     <>
-      <input type="text" size={5} onChange={handleUserInput} />
-      <button onClick={handleSubmitAnswer}>Submit Answer</button>
+      <input
+        type="text"
+        size={5}
+        onChange={handleUserInput}
+        disabled={answerSubmitted}
+      />
+      <button onClick={handleSubmitAnswer} disabled={answerSubmitted}>
+        Submit Answer
+      </button>
       {isAnswerCorrect ? <p>CORRECT!!!</p> : null}
       {isAnswerWrong ? (
         <>
