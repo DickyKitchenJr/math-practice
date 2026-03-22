@@ -31,6 +31,10 @@ h1 {
   display: none;
 }
 
+.print-credit {
+  display: none;
+}
+
 main {
   flex: 1;
   /* overflow-y: auto; */
